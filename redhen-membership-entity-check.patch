@@ -1,0 +1,20 @@
+commit f8eb369ad585b68a0a1a7d2ae45f06a32f2250f4
+Author: Jacob Lane <lane.jacob@gmail.com>
+Date:   Sat Dec 19 22:54:00 2015 -0500
+
+    ...
+
+diff --git a/redhen_membership.module b/redhen_membership.module
+index e72fa26..855a1f4 100644
+--- a/redhen_membership.module
++++ b/redhen_membership.module
+@@ -978,6 +978,9 @@ function redhen_membership_state_options() {
+  * @see redhen_membership_entity_property_info()
+  */
+ function redhen_membership_property_host_get(RedhenMembership $membership, array $options, $property_name, $entity_type) {
++  if (!$entity->entity_type) {
++    return NULL;
++  }
+   $entity = entity_load_single($membership->entity_type, $membership->entity_id);
+   return ($entity) ? entity_metadata_wrapper($membership->entity_type, $entity) : NULL;
+ }
