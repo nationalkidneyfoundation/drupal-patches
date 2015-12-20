@@ -12,7 +12,7 @@ index e72fa26..855a1f4 100644
   * @see redhen_membership_entity_property_info()
   */
  function redhen_membership_property_host_get(RedhenMembership $membership, array $options, $property_name, $entity_type) {
-+  if (!$entity->entity_type) {
++  if (!$membership->entity_type) {
 +    return NULL;
 +  }
    $entity = entity_load_single($membership->entity_type, $membership->entity_id);
