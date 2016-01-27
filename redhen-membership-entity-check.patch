@@ -1,9 +1,3 @@
-commit f8eb369ad585b68a0a1a7d2ae45f06a32f2250f4
-Author: Jacob Lane <lane.jacob@gmail.com>
-Date:   Sat Dec 19 22:54:00 2015 -0500
-
-    ...
-
 diff --git a/redhen_membership.module b/redhen_membership.module
 index e72fa26..855a1f4 100644
 --- a/redhen_membership.module

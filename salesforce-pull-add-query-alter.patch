@@ -1,0 +1,14 @@
+diff --git a/modules/salesforce_pull/salesforce_pull.module b/modules/salesforce_pull/salesforce_pull.module
+index f8af62b..3c5a3f6 100644
+--- a/modules/salesforce_pull/salesforce_pull.module
++++ b/modules/salesforce_pull/salesforce_pull.module
+@@ -260,6 +260,9 @@ function salesforce_pull_get_updated_records() {
+       $soql->addCondition('RecordTypeId', $mapped_record_types, 'IN');
+     }
+ 
++    // Allow modules to alter query.
++    drupal_alter('salesforce_pull_query', $query, $mapping);
++
+     // Execute query.
+     $results = $sfapi->query($soql);
+     $version_path = parse_url($sfapi->getApiEndPoint(), PHP_URL_PATH);
