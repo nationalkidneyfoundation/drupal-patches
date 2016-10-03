@@ -1,0 +1,12 @@
+diff --git a/includes/redhen_donation.forms.inc b/includes/redhen_donation.forms.inc
+index 2ef831a..b0c0362 100644
+--- a/includes/redhen_donation.forms.inc
++++ b/includes/redhen_donation.forms.inc
+@@ -855,6 +855,7 @@ function redhen_donation_form_submit($form, &$form_state) {
+     // Set Address field if needed.
+     if (!empty($donation_type->settings['contact_settings']['profile_selector']) &&
+       $donation_type->settings['contact_settings']['profile_selector'] != 'billing') {
++      $sync_field = $donation_type->settings['contact_settings']['profile_selector'];
+       $contact_address = array();
+       if (!empty($contact_wrapper->{$sync_field})) {
+         // The wrapper can be set, but the value equal to null in some cases.
