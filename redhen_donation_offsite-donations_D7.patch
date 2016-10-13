@@ -3,7 +3,7 @@ index 2ef831a..ab3131d 100644
 --- a/includes/redhen_donation.forms.inc
 +++ b/includes/redhen_donation.forms.inc
 @@ -980,6 +980,8 @@ function redhen_donation_form_submit($form, &$form_state) {
-
+ 
      // Now we can process the payment at last.
      $payment_method = commerce_payment_method_instance_load($form_state['values']['payment_method']);
 +    // Try to get a redirect payment callback for offsite methods.
@@ -13,7 +13,7 @@ index 2ef831a..ab3131d 100644
        $charge = array(
 @@ -1001,17 +1003,24 @@ function redhen_donation_form_submit($form, &$form_state) {
        commerce_line_item_save($line_item);
-
+ 
        $callback($payment_method, $details_form, $details_values, $order, $charge);
 -      $transaction = entity_load('commerce_payment_transaction', FALSE, array('order_id' => $order->order_id));
 -      $transaction = current($transaction);
@@ -46,7 +46,7 @@ index 2ef831a..ab3131d 100644
      }
    }
 @@ -1041,30 +1050,46 @@ function redhen_donation_form_submit($form, &$form_state) {
-
+ 
    // Save the donation and redirect.
    if (redhen_donation_save($donation)) {
 -    watchdog('redhen_donation', 'RedHen Donation %donation_id has been saved.',
@@ -113,12 +113,12 @@ index 2ef831a..ab3131d 100644
    else {
      drupal_set_message(t('There was a problem submitting your donation.'));
 diff --git a/redhen_donation.module b/redhen_donation.module
-index f615f87..95e3373 100644
+index f615f87..1f5952c 100644
 --- a/redhen_donation.module
 +++ b/redhen_donation.module
-@@ -295,6 +295,106 @@ function redhen_donation_menu() {
+@@ -295,6 +295,107 @@ function redhen_donation_menu() {
  }
-
+ 
  /**
 + * Implements hook_menu_alter().
 + */
@@ -202,7 +202,8 @@ index f615f87..95e3373 100644
 +        $host_entity = entity_metadata_wrapper($settings['entity_type'], $settings['entity_id']);
 +        $goto = $host_entity->url->value();
 +      }
-+      rules_invoke_event('redhen_donation_donation_completed', $donation, $transaction, $line_item, $product);
++      // Don't need to invoke this rule as paid in full hook takes care of this.
++      //rules_invoke_event('redhen_donation_donation_completed', $donation, $transaction, $line_item, $product);
 +      drupal_goto($goto);
 +    }
 +    else {
