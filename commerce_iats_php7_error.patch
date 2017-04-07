@@ -1,7 +1,7 @@
-diff --git a/profiles/kidneys_distro/modules/contrib/commerce_iats/commerce_iats.module b/profiles/kidneys_distro/modules/contrib/commerce_iats/commerce_iats.module
+diff --git a/commerce_iats.module b/commerce_iats.module
 index 56006c3..a629c16 100644
---- a/profiles/kidneys_distro/modules/contrib/commerce_iats/commerce_iats.module
-+++ b/profiles/kidneys_distro/modules/contrib/commerce_iats/commerce_iats.module
+--- a/commerce_iats.module
++++ b/commerce_iats.module
 @@ -1001,7 +1001,7 @@ function commerce_iats_process_payment($payment_method, $payment_data, $order, $
        }
        else {
