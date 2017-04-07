@@ -1,5 +1,5 @@
 diff --git a/commerce_iats.module b/commerce_iats.module
-index 56006c3..a629c16 100644
+index 56006c3..3c9ef79 100644
 --- a/commerce_iats.module
 +++ b/commerce_iats.module
 @@ -1001,7 +1001,7 @@ function commerce_iats_process_payment($payment_method, $payment_data, $order, $
@@ -7,7 +7,7 @@ index 56006c3..a629c16 100644
        else {
          $transaction->status = COMMERCE_PAYMENT_STATUS_FAILURE;
 -        $message = array('Transaction failed.') . $auth_result;
-+        $message = array('Transaction failed. ' . $auth_result);
++        $message = array('Transaction failed. '. $auth_result) ;
        }
      }
  
