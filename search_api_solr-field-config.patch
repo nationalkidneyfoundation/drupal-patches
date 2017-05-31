@@ -1,10 +1,12 @@
-diff --git a/solr-conf/3.x/schema_extra_fields.xml b/solr-conf/3.x/schema_extra_fields.xml
-index 9ecd5f4..ef90cdf 100644
---- a/solr-conf/3.x/schema_extra_fields.xml
-+++ b/solr-conf/3.x/schema_extra_fields.xml
-@@ -1,4 +1,5 @@
- <fields>
-+  <field name="tm_field_search_boost_term" type="sortString" indexed="true" stored="true" multiValued="true" />
- <!--
-   Adding German dynamic field types to our Solr Schema
-   If you enable this, make sure you have a folder called lang with stopwords_de.txt
+diff --git a/solr-conf/3.x/schema.xml b/solr-conf/3.x/schema.xml
+index de4b870..c41c037 100644
+--- a/solr-conf/3.x/schema.xml
++++ b/solr-conf/3.x/schema.xml
+@@ -566,6 +566,7 @@
+          Alternately, change the type="ignored" to some other type e.g. "text" if you want
+          unknown fields indexed and/or stored by default -->
+     <dynamicField name="*" type="ignored" multiValued="true" />
++    <field name="tm_field_search_boost_term" type="sortString" indexed="true" stored="true" multiValued="true" />
+ 
+   </fields>
+ 
