@@ -1,0 +1,14 @@
+diff --git a/modules/salesforce_pull/salesforce_pull.module b/modules/salesforce_pull/salesforce_pull.module
+index 8099d77..a093464 100644
+--- a/modules/salesforce_pull/salesforce_pull.module
++++ b/modules/salesforce_pull/salesforce_pull.module
+@@ -367,6 +367,9 @@ function salesforce_pull_process_updated_records($sf_object) {
+       $mapping_conditions['salesforce_record_type'] = $sf_object['RecordTypeId'];
+     }
+ 
++    // Adding hook to allow for altering of mapping conditions.
++    drupal_alter('salesforce_pull_process_record_mapping_condition', $mapping_conditions, $sf_object);
++
+     $sf_mappings = salesforce_mapping_load_multiple($mapping_conditions);
+ 
+     $hold_exceptions = count($sf_mappings) > 1;
